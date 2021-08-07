@@ -105,7 +105,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     commits: {
       icon: icons.commits,
-      label: `I pushed ${totalCommits} commits${
+      label: `I landed ${totalCommits} commits${
         include_all_commits ? "" : ` (${new Date().getFullYear()})`
       } 💪`,
       id: "commits",
