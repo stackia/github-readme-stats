@@ -15,6 +15,12 @@ const fetcher = (variables, token) => {
         user(login: $login) {
           name
           login
+          organizations(first: 100) {
+            nodes {
+              id
+              login
+            }
+          }
           contributionsCollection {
             totalCommitContributions
             restrictedContributionsCount
@@ -52,7 +58,7 @@ const fetcher = (variables, token) => {
 
 // https://github.com/anuraghazra/github-readme-stats/issues/92#issuecomment-661026467
 // https://github.com/anuraghazra/github-readme-stats/pull/211/
-const totalCommitsFetcher = async (username) => {
+const totalCommitsFetcher = async (username, org) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username");
     return 0;
@@ -60,9 +66,13 @@ const totalCommitsFetcher = async (username) => {
 
   // https://developer.github.com/v3/search/#search-commits
   const fetchTotalCommits = (variables, token) => {
+    let url = `https://api.github.com/search/commits?q=author:${variables.login}`;
+    if (variables.org) {
+      url += `%20org:${variables.org}`;
+    }
     return axios({
       method: "get",
-      url: `https://api.github.com/search/commits?q=author:${variables.login}`,
+      url,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.cloak-preview",
@@ -72,10 +82,11 @@ const totalCommitsFetcher = async (username) => {
   };
 
   try {
-    let res = await retryer(fetchTotalCommits, { login: username });
-    if (res.data.total_count) {
+    let res = await retryer(fetchTotalCommits, { login: username, org });
+    if (res.data.total_count !== undefined) {
       return res.data.total_count;
     }
+    throw new Error("Unknown response", res.data);
   } catch (err) {
     logger.log(err);
     // just return 0 if there is something wrong so that
@@ -86,6 +97,7 @@ const totalCommitsFetcher = async (username) => {
 
 async function fetchStats(
   username,
+  count_org = false,
   count_private = false,
   include_all_commits = false,
 ) {
@@ -122,7 +134,18 @@ async function fetchStats(
   // if include_all_commits then just get that,
   // since totalCommitsFetcher already sends totalCommits no need to +=
   if (include_all_commits) {
-    stats.totalCommits = await totalCommitsFetcher(username);
+    if (count_org) {
+      stats.totalCommits = (
+        await Promise.all([
+          totalCommitsFetcher(username),
+          ...user.organizations.nodes.map(({ login: org }) =>
+            totalCommitsFetcher(username, org),
+          ),
+        ])
+      ).reduce((a, b) => a + b, 0);
+    } else {
+      stats.totalCommits = await totalCommitsFetcher(username);
+    }
   }
 
   // if count_private then add private commits to totalCommits so far.

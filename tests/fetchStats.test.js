@@ -8,6 +8,14 @@ const data = {
   data: {
     user: {
       name: "Anurag Hazra",
+      organizations: {
+        nodes: [
+          {
+            id: "id-1",
+            login: "org-1",
+          },
+        ],
+      },
       repositoriesContributedTo: { totalCount: 61 },
       contributionsCollection: {
         totalCommitContributions: 100,
@@ -84,7 +92,7 @@ describe("Test fetchStats", () => {
   it("should fetch and add private contributions", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data);
 
-    let stats = await fetchStats("anuraghazra", true);
+    let stats = await fetchStats("anuraghazra", false, true);
     const rank = calculateRank({
       totalCommits: 150,
       totalRepos: 5,
@@ -112,7 +120,7 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, true);
+    let stats = await fetchStats("anuraghazra", false, true, true);
     const rank = calculateRank({
       totalCommits: 1050,
       totalRepos: 5,
@@ -127,6 +135,39 @@ describe("Test fetchStats", () => {
       contributedTo: 61,
       name: "Anurag Hazra",
       totalCommits: 1050,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalStars: 400,
+      rank,
+    });
+  });
+
+  it("should fetch total commits (within orgs)", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, data);
+    mock
+      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .reply(200, { total_count: 1000 });
+    mock
+      .onGet(
+        "https://api.github.com/search/commits?q=author:anuraghazra%20org:org-1",
+      )
+      .reply(200, { total_count: 100 });
+
+    let stats = await fetchStats("anuraghazra", true, true, true);
+    const rank = calculateRank({
+      totalCommits: 1150,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 400,
+      prs: 300,
+      issues: 200,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 1150,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,

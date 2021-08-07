@@ -8,6 +8,7 @@ const {
 } = require("../src/common/utils");
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
+const whitelist = require("../src/common/whitelist");
 const blacklist = require("../src/common/blacklist");
 const { isLocaleAvailable } = require("../src/translations");
 
@@ -20,6 +21,7 @@ module.exports = async (req, res) => {
     hide_rank,
     show_icons,
     count_private,
+    count_org,
     include_all_commits,
     line_height,
     title_color,
@@ -38,6 +40,10 @@ module.exports = async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
+  if (whitelist.length > 0 && !whitelist.includes(username)) {
+    return res.send(renderError("Something went wrong"));
+  }
+
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
   }
@@ -49,6 +55,7 @@ module.exports = async (req, res) => {
   try {
     stats = await fetchStats(
       username,
+      parseBoolean(count_org),
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
     );
