@@ -52,6 +52,9 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
       transform: rotate(-90deg);
       animation: rankAnimation 1s forwards ease-in-out;
     }
+    .card-bg {
+      animation: flipInY 1s both ease-in-out;
+    }
     
   
     .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333 }
@@ -74,6 +77,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
         
 
         <rect
+          class=\\"card-bg\\"
           data-testid=\\"card-bg\\"
           x=\\"0.5\\"
           y=\\"0.5\\"
@@ -213,6 +217,9 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       transform: rotate(-90deg);
       animation: rankAnimation 1s forwards ease-in-out;
     }
+    .card-bg {
+      animation: flipInY 1s both ease-in-out;
+    }
     
   
     .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333 }
@@ -235,6 +242,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         
 
         <rect
+          class=\\"card-bg\\"
           data-testid=\\"card-bg\\"
           x=\\"0.5\\"
           y=\\"0.5\\"

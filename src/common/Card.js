@@ -152,6 +152,7 @@ class Card {
         ${this.renderGradient()}
 
         <rect
+          class="card-bg"
           data-testid="card-bg"
           x="0.5"
           y="0.5"

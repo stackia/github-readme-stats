@@ -41,6 +41,22 @@ const getAnimations = () => {
         opacity: 1;
       }
     }
+    @keyframes flipInY {
+      0% {
+         transform: perspective(400px) rotateY(90deg);
+         opacity: 0;
+      }
+      40% {
+         transform: perspective(400px) rotateY(-10deg);
+      }
+      70% {
+         transform: perspective(400px) rotateY(10deg);
+      }
+      100% {
+         transform: perspective(400px) rotateY(0deg);
+         opacity: 1;
+      }
+   }
   `;
 };
 
@@ -86,6 +102,9 @@ const getStyles = ({
       transform-origin: -10px 8px;
       transform: rotate(-90deg);
       animation: rankAnimation 1s forwards ease-in-out;
+    }
+    .card-bg {
+      animation: flipInY 1s both ease-in-out;
     }
     ${process.env.NODE_ENV === "test" ? "" : getProgressAnimation({ progress })}
   `;
