@@ -11,25 +11,25 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
       >
         <style>
           .header {
-            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+            font: 200 18px 'Segoe Script', Ubuntu, Sans-Serif;
             fill: #2f80ed;
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }
           
     
     .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font: 400 14px 'Segoe Script', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
     }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333; 
+      font: 800 24px 'Segoe Script', Ubuntu, Sans-Serif; fill: #333; 
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     
-    .bold { font-weight: 700 }
+    .bold { font-weight: 400 }
     .icon {
       fill: #4c71f2;
       display: none;
@@ -162,25 +162,25 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       >
         <style>
           .header {
-            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+            font: 200 18px 'Segoe Script', Ubuntu, Sans-Serif;
             fill: #2f80ed;
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }
           
     
     .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font: 400 14px 'Segoe Script', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
     }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333; 
+      font: 800 24px 'Segoe Script', Ubuntu, Sans-Serif; fill: #333; 
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     
-    .bold { font-weight: 700 }
+    .bold { font-weight: 400 }
     .icon {
       fill: #4c71f2;
       display: none;
