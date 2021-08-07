@@ -125,7 +125,7 @@ class Card {
       >
         <style>
           .header {
-            font: 200 18px 'Segoe Script', Ubuntu, Sans-Serif;
+            font: 200 18px Chilanka, 'Segoe Print', Ubuntu, Sans-Serif;
             fill: ${this.colors.titleColor};
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }
@@ -136,6 +136,16 @@ class Card {
             this.animations === false
               ? `* { animation-duration: 0s !important; animation-delay: 0s !important; }`
               : ""
+          }
+        </style>
+        <style>
+          @font-face {
+            font-family: 'Chilanka';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/chilanka/v8/WWXRlj2DZQiMJYaYRoJXKdA.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
           }
         </style>
 

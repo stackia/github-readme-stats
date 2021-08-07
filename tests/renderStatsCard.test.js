@@ -30,11 +30,21 @@ describe("Test renderStatsCard", () => {
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
     ).toBe("195");
-    expect(getByTestId(document.body, "stars").textContent).toBe("100");
-    expect(getByTestId(document.body, "commits").textContent).toBe("200");
-    expect(getByTestId(document.body, "issues").textContent).toBe("300");
-    expect(getByTestId(document.body, "prs").textContent).toBe("400");
-    expect(getByTestId(document.body, "contribs").textContent).toBe("500");
+    expect(
+      getByTestId(document.body, "stars").previousElementSibling.textContent,
+    ).toContain("100");
+    expect(
+      getByTestId(document.body, "commits").previousElementSibling.textContent,
+    ).toContain("200");
+    expect(
+      getByTestId(document.body, "issues").previousElementSibling.textContent,
+    ).toContain("300");
+    expect(
+      getByTestId(document.body, "prs").previousElementSibling.textContent,
+    ).toContain("400");
+    expect(
+      getByTestId(document.body, "contribs").previousElementSibling.textContent,
+    ).toContain("500");
     expect(queryByTestId(document.body, "card-bg")).toBeInTheDocument();
     expect(queryByTestId(document.body, "rank-circle")).toBeInTheDocument();
   });
@@ -240,27 +250,27 @@ describe("Test renderStatsCard", () => {
       document.querySelector(
         'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"获标星数（star）:"`);
+    ).toMatchInlineSnapshot(`"I received 100 stars ❤️"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"累计提交数（commit） (2021):"`);
+    ).toMatchInlineSnapshot(`"I pushed 200 commits (2021) 💪"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
+    ).toMatchInlineSnapshot(`"I created 400 PRs 🙌"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
+    ).toMatchInlineSnapshot(`"I raised 300 issues 🤬"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"参与项目数:"`);
+    ).toMatchInlineSnapshot(`"I contributed to 500 repos 😎"`);
   });
 
   it("should render without rounding", () => {

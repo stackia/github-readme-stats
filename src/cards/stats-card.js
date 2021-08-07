@@ -34,13 +34,13 @@ const createTextNode = ({
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
-      <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
+      <text class="stat bold" ${labelOffset} y="12.5">${label}</text>
       <text 
         class="stat" 
         x="${(showIcons ? 140 : 120) + shiftValuePos}" 
         y="12.5" 
         data-testid="${id}"
-      >${kValue}</text>
+      ></text>
     </g>
   `;
 };
@@ -78,20 +78,15 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const lheight = parseInt(line_height, 10);
 
   // returns theme based colors with proper overrides and defaults
-  const {
-    titleColor,
-    textColor,
-    iconColor,
-    bgColor,
-    borderColor,
-  } = getCardColors({
-    title_color,
-    icon_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
+  const { titleColor, textColor, iconColor, bgColor, borderColor } =
+    getCardColors({
+      title_color,
+      icon_color,
+      text_color,
+      bg_color,
+      border_color,
+      theme,
+    });
 
   const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
     ? ""
@@ -105,34 +100,29 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const STATS = {
     stars: {
       icon: icons.star,
-      label: i18n.t("statcard.totalstars"),
-      value: totalStars,
+      label: `I received ${totalStars} stars ❤️`,
       id: "stars",
     },
     commits: {
       icon: icons.commits,
-      label: `${i18n.t("statcard.commits")}${
+      label: `I pushed ${totalCommits} commits${
         include_all_commits ? "" : ` (${new Date().getFullYear()})`
-      }`,
-      value: totalCommits,
+      } 💪`,
       id: "commits",
     },
     prs: {
       icon: icons.prs,
-      label: i18n.t("statcard.prs"),
-      value: totalPRs,
+      label: `I created ${totalPRs} PRs 🙌`,
       id: "prs",
     },
     issues: {
       icon: icons.issues,
-      label: i18n.t("statcard.issues"),
-      value: totalIssues,
+      label: `I raised ${totalIssues} issues 🤬`,
       id: "issues",
     },
     contribs: {
       icon: icons.contribs,
-      label: i18n.t("statcard.contribs"),
-      value: contributedTo,
+      label: `I contributed to ${contributedTo} repos 😎`,
       id: "contribs",
     },
   };
@@ -180,8 +170,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
           <text
-            x="${rank.level.length === 1 ? "-4" : "0"}"
-            y="0"
+            x="-3"
+            y="5"
             alignment-baseline="central"
             dominant-baseline="central"
             text-anchor="middle"

@@ -53,14 +53,14 @@ const getStyles = ({
 }) => {
   return `
     .stat {
-      font: 400 14px 'Segoe Script', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+      font: 400 14px Chilanka, 'Segoe Print', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
     }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe Script', Ubuntu, Sans-Serif; fill: ${textColor}; 
+      font: 800 24px Chilanka, 'Segoe Print', Ubuntu, Sans-Serif; fill: ${textColor}; 
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     
