@@ -1,3 +1,15 @@
+# Note
+
+This fork has the following improvements compared to [the original one](https://github.com/anuraghazra/github-readme-stats):
+
+- Count commits from your organizations (using `count_org=true`)
+- Improve caching with [stale-while-revalidate](https://vercel.com/docs/serverless-functions/edge-caching#stale-while-revalidate)
+- Adjust the font family and styles to make myself satisfied (example: <https://github.com/stackia>)
+- The minimum allowed `cache_seconds` is now `5`
+- Add a [whitelist file](blob/master/src/common/whitelist.js) to specify allowed GitHub profiles so no others can abuse your personal access tokens
+
+---
+
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
