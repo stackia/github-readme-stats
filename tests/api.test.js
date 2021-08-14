@@ -194,10 +194,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        [
-          "Cache-Control",
-          `public, max-age=${CONSTANTS.TWO_HOURS}, stale-while-revalidate`,
-        ],
+        ["Cache-Control", `public, max-age=5, stale-while-revalidate`],
       ]);
     }
   });

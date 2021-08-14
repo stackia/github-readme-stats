@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-      CONSTANTS.TWO_HOURS,
+      5,
       CONSTANTS.ONE_DAY,
     );
 
