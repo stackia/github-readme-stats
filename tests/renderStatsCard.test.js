@@ -255,7 +255,7 @@ describe("Test renderStatsCard", () => {
       document.querySelector(
         'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"I pushed 200 commits (2021) 💪"`);
+    ).toMatchInlineSnapshot(`"I landed 200 commits (2021) 💪"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
